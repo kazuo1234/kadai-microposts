@@ -108,7 +108,7 @@ return [
     |
     */
 
-    'providers' => [
+    'providers' => array(
 
         /*
          * Laravel Framework Service Providers...
@@ -146,8 +146,8 @@ return [
         App\Providers\RouteServiceProvider::class,
 
         Collective\Html\HtmlServiceProvider::class,
-
-    ],
+	    Barryvdh\LaravelIdeHelper\IdeHelperServiceProvider::class,
+    ),
 
     /*
     |--------------------------------------------------------------------------
