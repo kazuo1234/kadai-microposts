@@ -9,7 +9,9 @@
         "laravel/framework": "5.1.*",
         "laravelcollective/html": "5.1.*",
         "barryvdh/laravel-ide-helper": "v2.4.1",
-        "barryvdh/laravel-debugbar": "v2.4.3"
+        "barryvdh/laravel-debugbar": "v2.4.3",
+        "thomaswelton/laravel-gravatar": "~1.0"
+
     },
     "require-dev": {
         "fzaninotto/faker": "~1.4",
