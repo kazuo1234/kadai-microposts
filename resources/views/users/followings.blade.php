@@ -25,6 +25,7 @@
                     <a href="{{ route('users.followers', ['id' => $user->id]) }}">followers <span class="badge">{{ $count_followers }}</span></a>
                 </li>
             </ul>
+            @include('users.users', ['users' => $users])
         </div>
     </div>
 @endsection
