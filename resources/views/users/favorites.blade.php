@@ -28,7 +28,7 @@
                     <a href="{{ route('micropost.favoriteList', ['id' => $user->id]) }}">Favorite <span class="badge">{{ $count_favorites }}</span></a>
                 </li>
             </ul>
-            @include('users.users', ['users' => $users])
+            @include('microposts.microposts', ['microposts' => $microposts])
         </div>
     </div>
 @endsection

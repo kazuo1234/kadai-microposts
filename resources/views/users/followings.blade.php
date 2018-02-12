@@ -24,6 +24,9 @@
                 <li role="presentation" class="{{ Request::is('users/*/followers') ? 'active' : ''}}">
                     <a href="{{ route('users.followers', ['id' => $user->id]) }}">followers <span class="badge">{{ $count_followers }}</span></a>
                 </li>
+                <li role="presentation" class="{{ Request::is('users/*/favoriteList') ? 'active' : '' }}">
+                    <a href="{{ route('micropost.favoriteList', ['id' => $user->id]) }}">Favorite <span class="badge">{{ $count_favorites }}</span></a>
+                </li>
             </ul>
             @include('users.users', ['users' => $users])
         </div>

@@ -135,4 +135,54 @@ class User extends Model implements AuthenticatableContract,
     	$follow_user_ids[] = $this->id;
     	return Micropost::whereIn('user_id', $follow_user_ids);
     }
+
+	/**
+	 * お気に入り登録用
+	 *
+	 * @return \Illuminate\Database\Eloquent\Relations\BelongsToMany
+	 */
+    public function favoritesUser()
+    {
+    	return $this->belongsToMany(Micropost::class, 'micropost_favorites'
+		    , 'user_id', 'micropost_id')->withTimestamps();
+    }
+
+	/**
+	 * お気に入り登録する
+	 *
+	 * @param $micropost_id
+	 * @return bool
+	 */
+    public function registerFavorite($micropost_id)
+    {
+    	// 既にお気に入り登録されているか
+	    if ($this->isFavorite($micropost_id)) {
+	    	return false;
+	    } else {
+		    $this->favoritesUser()->attach($micropost_id);
+		    return true;
+	    }
+    }
+
+	/**
+	 * お気に入り解除する
+	 *
+	 * @param $micropost_id
+	 * @return bool
+	 */
+    public function deRegisterFavorite($micropost_id)
+    {
+    	// お気に入り登録されているか
+	    if ($this->isFavorite($micropost_id)) {
+	    	$this->favoritesUser()->detach($micropost_id);
+	    	return true;
+	    } else {
+	    	return false;
+	    }
+    }
+
+    public function isFavorite($micropost_id)
+    {
+    	return $this->favoritesUser()->where('micropost_id', $micropost_id)->exists();
+    }
 }
